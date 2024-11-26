@@ -1,0 +1,38 @@
+body{
+    font-family: Helvetica neue;
+}
+#choices{
+    display:flex;
+    justify-content: center;
+    gap:80px;
+    padding:50px;
+}
+#choices button{
+    padding:10px 20px;
+    font-family: Helvetica neue;
+    font-size:large;
+    font-weight: 600;
+    font-size: xx-large;
+    border: 5px solid;
+    background-color: white;
+    
+}
+#choices button:hover{
+    background-color: black;
+    color:white;
+}
+#results{
+    display: flex;
+    justify-content: center;
+}
+#score{
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    margin-bottom: 60px; 
+}
+#finalResult{
+    display: flex;
+    justify-content: center;
+  
+}

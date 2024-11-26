@@ -25,6 +25,7 @@ the game ends
 */
 
 //Global Declarations
+let finalResult = document.querySelector("#finalResult");
 let humanScore = 0;
 let computerScore = 0;
 
@@ -53,51 +54,59 @@ function getComputerChoice (){
     return cChoice
 }
 
-function getHumanChoice (){
-    let hChoice = window.prompt("Pick your poison.");
-    return capitalize(hChoice)
-}
 
 //ROUND
 
 function playRound (humanChoice, computerChoice){ 
     let a  = humanChoice;
     let b = computerChoice;
+    let roundResult = document.querySelector("#roundResult");
+    let score = document.querySelector("#score");
 
     if (((a === "Paper") && (b === "Rock")) || 
         ((a === "Rock") && (b === "Scissors")) ||
         ((a === "Scissors") && (b === "Paper"))){
             humanScore = humanScore + 1;
-            console.log("You win! " + a + " beats " + b + ".");
+            roundResult.innerText = "You win! " + a + " beats " + b + "."
         }
         else if (((a === "Rock") && (b === "Paper")) || 
             ((a === "Paper") && (b === "Scissors")) ||
             ((a === "Scissors") && (b === "Rock"))){
                 computerScore = computerScore + 1;
-                console.log("You lose! " + b + " beats " + a + ".")
+                roundResult.innerText = "You lose! " + b + " beats " + a + ".";
                 } else {
-                    console.log("Uncomputable, try again.");
+                    roundResult.innerText = "Tie, try again.";
                 }
-    return humanScore + " - " + computerScore;
+    score.innerText = humanScore + " - " + computerScore;
+    let round = 0;
+    return outcome();
 }
 
 
 //GAME
 function outcome () {
-    if (humanScore > computerScore){
-        return "You won the game!"
-    } else if (humanScore === computerScore){
-        return "I'ts a tie." 
-    } else {
-     return "You lost."}
+        if (humanScore === 5){
+            finalResult.innerText = "You won the game!";
+        } else if (computerScore === 5){
+            finalResult.innerText = "You lost."
+        } 
 }
-function playGame () {
-    console.log(playRound(getHumanChoice(),getComputerChoice()));
-    console.log(playRound(getHumanChoice(),getComputerChoice()));
-    console.log(playRound(getHumanChoice(),getComputerChoice()));
-    console.log(playRound(getHumanChoice(),getComputerChoice()));
-    console.log(playRound(getHumanChoice(),getComputerChoice()));
-    return outcome();
-    }
 
-console.log(playGame());
+
+
+//BUTTONS
+const btnRock = document.querySelector("#rock");
+const btnPaper = document.querySelector("#paper");
+const btnScissors = document.querySelector("#scissors");
+
+btnRock.addEventListener("click", () =>{
+    playRound(btnRock.value, getComputerChoice())}
+);
+btnPaper.addEventListener("click", () =>{
+    playRound(btnPaper.value, getComputerChoice())}
+);
+btnScissors.addEventListener("click", () =>{
+    playRound(btnScissors.value, getComputerChoice())}
+);
+
+//
